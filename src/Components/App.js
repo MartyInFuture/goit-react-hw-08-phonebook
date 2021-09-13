@@ -16,7 +16,6 @@ const App = () => {
   const UserInfoView = lazy(() => import('../views/UserInfoView'));
   const isFetchingUser = useSelector((state) => state.auth.isFetchingUser);
   const dispatch = useDispatch();
-  console.log(isFetchingUser);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
