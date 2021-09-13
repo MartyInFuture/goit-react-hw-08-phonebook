@@ -6,10 +6,7 @@ const userData = createReducer(
   {
     [authOperations.register.fulfilled]: (_, { payload }) => payload.user,
     [authOperations.logIn.fulfilled]: (_, { payload }) => payload.user,
-    [authOperations.fetchCurrentUser.fulfilled]: (_, { payload }) => {
-      // console.log(payload);
-      return payload;
-    },
+    [authOperations.fetchCurrentUser.fulfilled]: (_, { payload }) => payload,
     [authOperations.register.rejected]: () => ({}),
     [authOperations.logIn.rejected]: () => ({}),
     [authOperations.fetchCurrentUser.rejected]: () => ({}),

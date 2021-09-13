@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const User = () => {
+  const userName = useSelector((state) => state.auth.userData.name);
+  console.log(userName);
   return (
     <>
       <NavLink
@@ -9,7 +12,7 @@ const User = () => {
         to="/user-info"
         exact
       >
-        User info
+        Hello, {userName}!
       </NavLink>
       <NavLink activeClassName="activeLink" className="link" to="/logout" exact>
         LogOut

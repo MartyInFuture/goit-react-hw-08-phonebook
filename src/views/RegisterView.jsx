@@ -9,8 +9,13 @@ const LoginVIew = () => {
   return (
     <>
       {open ? (
-        <ModalWindow open={open} setOpen={setOpen}>
-          <RegisterForm />
+        <ModalWindow
+          open={open}
+          title="Register"
+          setOpen={setOpen}
+          isTrigger={false}
+        >
+          <RegisterForm setOpen={setOpen} />
         </ModalWindow>
       ) : (
         <Redirect to="/" />

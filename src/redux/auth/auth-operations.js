@@ -10,34 +10,38 @@ const register = createAsyncThunk('auth/Register', async (userData) => {
   } catch (error) {}
 });
 
-const logIn = createAsyncThunk('auth/Login', async (userData) => {
+const logIn = createAsyncThunk('auth/Login', async (userData, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/login', userData);
     tokenSettings.add(data.token);
     return data;
-  } catch (error) {}
+  } catch (error) {
+    throw error;
+  }
 });
 
 const logOut = createAsyncThunk('auth/Logout', async () => {
   try {
     await axios.post('/users/logout');
     tokenSettings.remove();
-  } catch (error) {}
+  } catch (error) {
+    throw error;
+  }
 });
 
 const fetchCurrentUser = createAsyncThunk(
   'auth/FetchCurrentUser',
   async (_, thunkAPI) => {
     const token = thunkAPI.getState().auth.token;
-    console.log(token);
     if (token === '') return thunkAPI.rejectWithValue();
 
     tokenSettings.add(token);
     try {
       const user = await axios.get('/users/current');
-      console.log(user.data);
       return user.data;
-    } catch (error) {}
+    } catch (error) {
+      throw error;
+    }
   }
 );
 

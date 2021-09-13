@@ -5,6 +5,8 @@ import { Switch, Route } from 'react-router-dom';
 import authOperations from '../redux/auth/auth-operations';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import PublicRoute from '../routes/PublicRoute';
+import PrivateRoute from '../routes/PrivateRoute';
 
 const App = () => {
   const ContactsView = lazy(() => import('../views/ContactsView'));
@@ -23,31 +25,23 @@ const App = () => {
       <Navigation />
       <Container>
         <Switch>
-          <Route path="/" exact>
-            <Suspense fallback={''}>
+          <Suspense fallback={''}>
+            <PrivateRoute path="/" exact>
               <ContactsView />
-            </Suspense>
-          </Route>
-          <Route path="/login" exact>
-            <Suspense fallback={''}>
+            </PrivateRoute>
+            <PublicRoute path="/login" exact redirectTo="/" restricted>
               <LoginView />
-            </Suspense>
-          </Route>
-          <Route path="/register" exact>
-            <Suspense fallback={''}>
+            </PublicRoute>
+            <PublicRoute path="/register" exact redirectTo="/" restricted>
               <RegisterView />
-            </Suspense>
-          </Route>
-          <Route path="/logout" exact>
-            <Suspense fallback={''}>
+            </PublicRoute>
+            <PrivateRoute path="/logout" exact>
               <LogoutView />
-            </Suspense>
-          </Route>
-          <Route path="/user-info" exact>
-            <Suspense fallback={''}>
+            </PrivateRoute>
+            <PrivateRoute path="/user-info" exact>
               <UserInfoView />
-            </Suspense>
-          </Route>
+            </PrivateRoute>
+          </Suspense>
         </Switch>
       </Container>
     </div>

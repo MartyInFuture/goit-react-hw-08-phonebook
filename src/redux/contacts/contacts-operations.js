@@ -25,7 +25,7 @@ export const removeContact = (id) => async (dispatch) => {
   dispatch(actions.removeRequest());
 
   try {
-    await axios.delete(`http://localhost:2015/contacts/${id}`).then(() => {
+    await axios.delete(`/contacts/${id}`).then(() => {
       dispatch(actions.removeSuccess(id));
     });
   } catch (error) {

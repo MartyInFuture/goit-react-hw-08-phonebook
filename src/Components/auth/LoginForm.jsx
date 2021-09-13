@@ -3,18 +3,21 @@ import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import authOperations from '../../redux/auth/auth-operations';
 import { Form, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
-const LoginForm = () => {
+const LoginForm = ({ setOpen }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailInputId] = useState(uuidv4());
   const [passwordInputId] = useState(uuidv4());
+
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const body = { email, password };
     dispatch(authOperations.logIn(body));
+    setOpen(false);
   };
 
   const handleChange = (e) => {
@@ -51,7 +54,10 @@ const LoginForm = () => {
         value={password}
         required
       />
-      <Button content="Add" type="submit" positive />
+      <div className="space-beetwen">
+        <Button content="LogIn" type="submit" positive />
+        <Link to="/register">Register</Link>
+      </div>
     </Form>
   );
 };

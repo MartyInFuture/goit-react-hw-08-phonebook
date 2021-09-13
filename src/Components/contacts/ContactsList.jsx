@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import Contact from './contact/Contact';
-// import { ContactsListStyled } from './ContactsListStyled';
 import { useSelector, useDispatch } from 'react-redux';
 import { contactsOperations, contactsSelectors } from '../../redux/contacts';
 import { List } from 'semantic-ui-react';
@@ -8,10 +7,11 @@ import { List } from 'semantic-ui-react';
 const ContactsList = () => {
   const filteredContacts = useSelector(contactsSelectors.getFilteredContacts);
   const dispatch = useDispatch();
+  const isLogIn = useSelector((state) => state.auth.isLogIn);
 
   useEffect(() => {
     dispatch(contactsOperations.fetchContacts());
-  }, [dispatch]);
+  }, [dispatch, isLogIn]);
 
   return (
     <>

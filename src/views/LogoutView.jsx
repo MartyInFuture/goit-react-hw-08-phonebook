@@ -11,20 +11,29 @@ const LoginVIew = () => {
 
   const logOut = () => {
     dispatch(authOperations.logOut());
+    setOpen(false);
   };
 
   return (
     <>
       {open ? (
-        <ModalWindow open={open} setOpen={setOpen} title="LogOut" size="mini">
+        <ModalWindow
+          open={open}
+          setOpen={setOpen}
+          title="LogOut"
+          size="mini"
+          isTrigger={false}
+        >
           <h2>You reale want to logout?</h2>
-
-          <Button color="red" onClick={() => setOpen(false)}>
-            <Icon name="remove" /> No
-          </Button>
-          <Button color="green" onClick={logOut}>
-            <Icon name="checkmark" /> Yes
-          </Button>
+          <div className="space-beetwen">
+            {' '}
+            <Button color="red" onClick={() => setOpen(false)}>
+              <Icon name="remove" /> No
+            </Button>
+            <Button color="green" onClick={logOut}>
+              <Icon name="checkmark" /> Yes
+            </Button>
+          </div>
         </ModalWindow>
       ) : (
         <Redirect to="/" />

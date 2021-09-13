@@ -8,6 +8,7 @@ const contactsRemove = (state, { payload }) => {
 
 const items = createReducer([], {
   [fetchContacts.fulfilled]: (_, action) => action.payload,
+  [fetchContacts.rejected]: () => [],
   [actions.addSuccess]: (state, action) => [...state, action.payload],
   [actions.removeSuccess]: contactsRemove,
 });
