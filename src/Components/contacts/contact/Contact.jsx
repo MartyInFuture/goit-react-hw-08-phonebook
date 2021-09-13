@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { contactsOperations } from '../../../redux/contacts';
 import { List, Button, Icon } from 'semantic-ui-react';
+import EditContact from '../editContact/EditContact';
 
 const Contact = ({ name, phone, id }) => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Contact = ({ name, phone, id }) => {
           value={id}
           onClick={deleteItem}
         />
+        <EditContact id={id} />
       </List.Content>
       <Icon name="user circle" size="big" />
       <List.Content>

@@ -8,6 +8,7 @@ const ModalWindow = ({
   title = '',
   size = 'tiny',
   isTrigger = true,
+  trigerButton = <TrigerButton setOpen={setOpen} />,
 }) => {
   return (
     <Modal
@@ -15,7 +16,7 @@ const ModalWindow = ({
       onOpen={() => setOpen(true)}
       open={open}
       size={size}
-      trigger={isTrigger && <TrigerButton setOpen={setOpen} />}
+      trigger={isTrigger && trigerButton}
     >
       <Modal.Header>{title}</Modal.Header>
       <Modal.Content>{children}</Modal.Content>

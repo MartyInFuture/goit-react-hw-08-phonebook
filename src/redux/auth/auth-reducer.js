@@ -36,8 +36,15 @@ const isLogIn = createReducer(false, {
   [authOperations.logOut.fulfilled]: () => false,
 });
 
+const isFetchingUser = createReducer(false, {
+  [authOperations.fetchCurrentUser.pending]: () => true,
+  [authOperations.fetchCurrentUser.rejected]: () => false,
+  [authOperations.fetchCurrentUser.fulfilled]: () => false,
+});
+
 export default combineReducers({
   userData,
   token,
   isLogIn,
+  isFetchingUser,
 });

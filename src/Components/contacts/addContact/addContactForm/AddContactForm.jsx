@@ -2,7 +2,10 @@ import { Form, Button } from 'semantic-ui-react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { contactsOperations, contactsSelectors } from '../../../redux/contacts';
+import {
+  contactsOperations,
+  contactsSelectors,
+} from '../../../../redux/contacts';
 
 const AddContactForm = ({ setOpen }) => {
   const [name, setName] = useState('');
@@ -61,17 +64,7 @@ const AddContactForm = ({ setOpen }) => {
         value={number}
         required
       />
-
-      {/* <Button color="black" onClick={() => setOpen(false)}>
-              Decline
-            </Button> */}
-      <Button
-        content="Add"
-        // labelPosition="right"
-        // icon="checkmark"
-        type="submit"
-        positive
-      />
+      <Button content="Add" type="submit" positive />
     </Form>
   );
 };

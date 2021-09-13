@@ -33,6 +33,7 @@ const LoginForm = ({ setOpen }) => {
         break;
       case 'name':
         setName(value);
+        break;
       default:
         return;
     }
